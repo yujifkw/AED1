@@ -1,3 +1,9 @@
+/*
+ * nome: 1020 C99.c
+ * descrição: Age in Days
+ *data: 15/10/2024
+ */
+
 #include <stdio.h>
  
 int main(){
