@@ -8,9 +8,9 @@
 
  int main(){
     int x=1, y=3;
-    int *px=&y, *py=&y;
+    int *px=&x, *py=&y;
 
-    *px = *px + *py;
+    *px = *px + *py; /* soma o conteudo armazenado em y no x */
 
     printf("x=%d, y=%d\n", x, y);
     printf("*px=%d, *py=%d\n", *px, *py);
@@ -19,3 +19,4 @@
 
     return 0;
  }
+
