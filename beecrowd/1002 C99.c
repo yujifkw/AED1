@@ -1,7 +1,7 @@
 /*
  * nome: 1002 C99.c
  * descrição: Area of a Circle
- *data: 15/10/2024
+ * data: 15/10/2024
  */
 
 #include <stdio.h>
