@@ -1,7 +1,7 @@
 /*
   *nome: 3160 C99.c
   *descrição: Amigos
-  *data: -
+  *data: 09/11
  */
 
 #include <stdio.h>
