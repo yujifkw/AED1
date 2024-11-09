@@ -1,6 +1,6 @@
 /*
   *nome: 2729 C99.c
-  *descrição: Lista de Compras
+  *descriÃ§Ã£o: Lista de Compras
   *data: 09/11
 */
 
@@ -14,7 +14,7 @@ typedef struct No{
 } No;
 
 
-// Função para criar um novo No e inserir no final da lista
+// FunÃ§Ã£o para criar um novo No e inserir no final da lista
 No *insLst(No *lst, char *prod){
     No *novo = (No*)malloc(sizeof(No));
     novo->prod = (char*)malloc(strlen(prod)+1);
@@ -33,7 +33,7 @@ No *insLst(No *lst, char *prod){
 }
 
 
-// Função para verificar se o produto já aparece na lista
+// FunÃ§Ã£o para verificar se o produto jÃ¡ aparece na lista
 int verifProd(No *lst, char *prod){
     No *temp = lst;
     while(temp != NULL){
@@ -45,7 +45,7 @@ int verifProd(No *lst, char *prod){
 }
 
 
-// Função para ler a lista (string)
+// FunÃ§Ã£o para ler a lista (string)
 No *lerLst(){
     No *lst = NULL;
     char prod[100];
@@ -61,7 +61,7 @@ No *lerLst(){
 }
 
 
-// Função para ordenar a lista (Bubble Sort)
+// FunÃ§Ã£o para ordenar a lista (Bubble Sort)
 void ordLst(No *lst){
     if(lst == NULL || lst->seg == NULL)
         return;
@@ -80,7 +80,7 @@ void ordLst(No *lst){
 }
 
 
-// Função para imprimir as listas ordenadas
+// FunÃ§Ã£o para imprimir as listas ordenadas
 void impLst(No *lst){
     No *temp = lst;
     while(temp != NULL){
@@ -93,7 +93,7 @@ void impLst(No *lst){
 }
 
 
-// Função para liberar a memoria
+// FunÃ§Ã£o para liberar a memoria
 void freeLst(No *lst){
     No *temp;
     while(lst != NULL){
@@ -121,4 +121,3 @@ int main(){
 
     return 0;
 }
-
