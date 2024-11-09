@@ -1,6 +1,6 @@
 /*
   *nome: 3160 C99.c
-  *descrição: Amigos
+  *descriÃ§Ã£o: Amigos
   *data: -
  */
 
@@ -14,23 +14,23 @@ typedef struct No {
 } No;
 
 
-// Função para criar um novo nó e insrir no final da lista
+// FunÃ§Ã£o para criar um novo nÃ³ e insrir no final da lista
 No *insFim(No *lst, char *nome){
     No *novo = (No*)malloc(sizeof(No));
     strcpy(novo->nome, nome);
     novo->seg = NULL;
 
-    if(lst == NULL) return novo;  // Retorna o novo nó como início da lista, caso a lista estivesse vazia
+    if(lst == NULL) return novo;  // Retorna o novo nÃ³ como inÃ­cio da lista, caso a lista estivesse vazia
     else{
         No *temp = lst;
         while(temp->seg != NULL) temp = temp->seg;
-        temp->seg = novo;  // Insere o novo nó ao final da lista
-        return lst;  // Retorna a lista com o novo nó ao final
+        temp->seg = novo;  // Insere o novo nÃ³ ao final da lista
+        return lst;  // Retorna a lista com o novo nÃ³ ao final
     }
 }
 
 
-// Função para ler uma lista (string)
+// FunÃ§Ã£o para ler uma lista (string)
 No *lerLst(){
     No *lst = NULL;
     char entrada[100];
@@ -45,7 +45,7 @@ No *lerLst(){
 }
 
 
-// Função para inserir a nova lista na primeira
+// FunÃ§Ã£o para inserir a nova lista na primeira
 No *insLst(No *lst1, No *lst2, char *posNome){
     No *temp = lst1;
     No *ant = NULL;
@@ -57,7 +57,7 @@ No *insLst(No *lst1, No *lst2, char *posNome){
     }
 
     if(temp != NULL){
-        if(ant == NULL){ // Insere no início se o nome for o primeiro da lista
+        if(ant == NULL){ // Insere no inÃ­cio se o nome for o primeiro da lista
             while(last->seg != NULL) last = last->seg;
             last->seg = lst1;
             return lst2;
@@ -78,7 +78,7 @@ No *insLst(No *lst1, No *lst2, char *posNome){
 }
 
 
-// Função para imprimir a lista
+// FunÃ§Ã£o para imprimir a lista
 void impLst(No *lst){
     No *temp = lst;
     while(temp != NULL){
