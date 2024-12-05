@@ -2,41 +2,42 @@
 #include <stdlib.h>
 #include <time.h>
 
-void insertionSort(int vet[], int n){
-    for(int i=1; i<n; i++){
-        int temp = vet[i];
-        int j = i-1;
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
 
-        while(j >= 0 && vet[j] > temp){
-            vet[j+1] = vet[j];
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
             j--;
         }
-        vet[j+1] = temp;
+        arr[j + 1] = key;
     }
 }
 
-void gerarRandom(int vet[], int n){
-    for(int i=0; i<n; i++){
-        vet[i] = rand()%100000;
+void generateRandomArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 100000;
     }
 }
 
-int main(){
+int main() {
     int n;
-    printf("Tamanho do Vetor (n): ");
-    scanf("%d", &n);
 
-    int *vet = malloc(n * sizeof(int));
+    for(n=0; n<=400000; n=n+20000){
+        int* arr = malloc(n * sizeof(int));
 
-    gerarRandom(vet, n);
+        generateRandomArray(arr, n);
 
-    clock_t start = clock();
-    insertionSort(vet, n);
-    clock_t end = clock();
+        clock_t start = clock();
+        insertionSort(arr, n);
+        clock_t end = clock();
 
-    double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Tempo: %.3f segundos\n", elapsed_time);
+        double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
+        printf("n=%d : %.3f segundos\n", n, elapsed_time);
 
-    free(vet);
+        free(arr);
+    }
+
     return 0;
 }
