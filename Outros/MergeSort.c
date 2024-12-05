@@ -3,24 +3,23 @@
 #include <time.h>
 
 void merge(int vet[], int l, int m, int r){
-    int n1 = m-l+1;
-    int n2 = r-m;
+    int n1 = m - l + 1;
+    int n2 = r - m;
 
-    int *L = malloc(n1 * sizeof(int));
-    int *R = malloc(n2 * sizeof(int));
+    int* L = malloc(n1 * sizeof(int));
+    int* R = malloc(n2 * sizeof(int));
 
-    for(int i=0; i<n1; i++)
-        L[i] = vet[l+i];
-    for(int j=0; j<n2; j++)
-        R[j] = vet[m+1+j];
+    for(int i = 0; i < n1; i++)
+        L[i] = vet[l + i];
+    for(int j = 0; j < n2; j++)
+        R[j] = vet[m + 1 + j];
 
-    int i=0, j=0, k=l;
-    while(i<n1 && j<n2){
+    int i = 0, j = 0, k = l;
+    while(i < n1 && j < n2){
         if(L[i] <= R[j]){
             vet[k] = L[i];
             i++;
-        }
-        else{
+        } else{
             vet[k] = R[j];
             j++;
         }
@@ -43,37 +42,37 @@ void merge(int vet[], int l, int m, int r){
     free(R);
 }
 
-void mergeSort(int vet[], int i, int j){
-    if(i < j){
-        int k = i+(j-l)/2;
-        mergeSort(vet, i, k);
-        mergeSort(vet, k+1, j);
-        merge(vet, i, k, r);
+void mergeSort(int vet[], int l, int r){
+    if(l < r){
+        int m = l + (r - l) / 2;
+        mergeSort(vet, l, m);
+        mergeSort(vet, m + 1, r);
+        merge(vet, l, m, r);
     }
 }
 
-void gerarRandom(int vet[], int n){
-    for(int i=0; i<n; i++){
-        vet[i] = rand()%100000;
+void gerarRand(int vet[], int n){
+    for(int i = 0; i < n; i++){
+        vet[i] = rand() % 100000;
     }
 }
 
 int main(){
     int n;
-    printf("Tamanho do vetor (n): ");
-    scanf("%d", &n);
 
-    int *vet = malloc(n * sizeof(int));
+    for(n=0; n<=400000; n=n+20000){
+        int* vet = malloc(n * sizeof(int));
 
-    gerarRandom(vet, n);
+        gerarRand(vet, n);
 
-    clock_t start = clock();
-    mergeSort(vet, 0, n-1);
-    clock_t end = clock();
+        clock_t start = clock();
+        mergeSort(vet, 0, n-1);
+        clock_t end = clock();
 
-    double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Tempo: %.3f segundos\n", elapsed_time);
+        double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
+        printf("n=%d : %.3f segundos\n", n, elapsed_time);
 
-    free(vet);
+        free(vet);
+    }
     return 0;
 }
