@@ -3,36 +3,37 @@
 #include <time.h>
 
 void merge(int vet[], int l, int m, int r){
-    int n1 = m - l + 1;
-    int n2 = r - m;
+    int n1 = m-l+1;
+    int n2 = r-m;
 
-    int* L = malloc(n1 * sizeof(int));
-    int* R = malloc(n2 * sizeof(int));
+    int *L = malloc(n1 * sizeof(int));
+    int *R = malloc(n2 * sizeof(int));
 
-    for(int i = 0; i < n1; i++)
-        L[i] = vet[l + i];
-    for(int j = 0; j < n2; j++)
-        R[j] = vet[m + 1 + j];
+    for(int i=0; i<n1; i++)
+        L[i] = vet[l+i];
+    for(int j=0; j<n2; j++)
+        R[j] = vet[m+1+j];
 
-    int i = 0, j = 0, k = l;
-    while(i < n1 && j < n2){
+    int i=0, j=0, k=l;
+    while(i<n1 && j<n2){
         if(L[i] <= R[j]){
             vet[k] = L[i];
             i++;
-        } else{
+        }
+        else{
             vet[k] = R[j];
             j++;
         }
         k++;
     }
 
-    while(i < n1){
+    while(i<n1){
         vet[k] = L[i];
         i++;
         k++;
     }
 
-    while(j < n2){
+    while(j<n2){
         vet[k] = R[j];
         j++;
         k++;
@@ -42,18 +43,18 @@ void merge(int vet[], int l, int m, int r){
     free(R);
 }
 
-void mergeSort(int vet[], int l, int r){
-    if(l < r){
-        int m = l + (r - l) / 2;
-        mergeSort(vet, l, m);
-        mergeSort(vet, m + 1, r);
-        merge(vet, l, m, r);
+void mergeSort(int vet[], int i, int j){
+    if(i<j){
+        int m = i+(j-i)/2;
+        mergeSort(vet, i, m);
+        mergeSort(vet, m+1, j);
+        merge(vet, i, m, j);
     }
 }
 
 void gerarRand(int vet[], int n){
-    for(int i = 0; i < n; i++){
-        vet[i] = rand() % 100000;
+    for(int i=0; i<n; i++){
+        vet[i] = rand()%100000;
     }
 }
 
@@ -61,7 +62,7 @@ int main(){
     int n;
 
     for(n=0; n<=400000; n=n+20000){
-        int* vet = malloc(n * sizeof(int));
+        int *vet = malloc(n * sizeof(int));
 
         gerarRand(vet, n);
 
