@@ -1,7 +1,7 @@
 /*
  * nome: 1340 C99.c
- * descrição: I Can Guess the Data Structure!
- * data: 05/12
+ * descriÃ§Ã£o: I Can Guess the Data Structure!
+ * data: 06/12
 */
 
 #include <stdio.h>
@@ -97,13 +97,13 @@ void verif(int n){
         switch(cmd){
             case 1:
                 if(ehPilha) insPilha(pilha, x, &topo);
-                if(ehFila) insFila(fila, x);
-                if(ehFP) insFP(fp, x);
+                if(ehFila) insFila(&fila, x);
+                if(ehFP) insFP(&fp, x);
                 break;
             case 2:
                 if(ehPilha) ehPilha = (remPilha(pilha, &topo) == x);
-                if(ehFila) ehFila = (remFila(fila) == x);
-                if(ehFP) ehFP = (remFP(fp) == x);
+                if(ehFila) ehFila = (remFila(&fila) == x);
+                if(ehFP) ehFP = (remFP(&fp) == x);
                 break;
         }
     }
