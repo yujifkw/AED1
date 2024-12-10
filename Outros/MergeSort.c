@@ -2,44 +2,36 @@
 #include <stdlib.h>
 #include <time.h>
 
-void merge(int vet[], int l, int m, int r){
-    int n1 = m-l+1;
-    int n2 = r-m;
+void Intercala (int p, int q, int r, int v[]){
+    int i, j, k, *w;
+     w = malloc((r-p) * sizeof(int));
 
-    int *L = malloc(n1 * sizeof(int));
-    int *R = malloc(n2 * sizeof(int));
-
-    for(int i=0; i<n1; i++)
-        L[i] = vet[l+i];
-    for(int j=0; j<n2; j++)
-        R[j] = vet[m+1+j];
-
-    int i=0, j=0, k=l;
-    while(i<n1 && j<n2){
-        if(L[i] <= R[j]) vet[k] = L[i++];
-        else vet[k] = R[j++];
-        k++;
+    i = p; j = q; k = 0;
+    while(i<q && j<r){
+        if(v[i] <= v[j]) w[k++] = v[i++];
+        else w[k++] = v[j++];
     }
 
-    while(i<n1) vet[k++] = L[i++];
-    while(j<n2) vet[k++] = R[j++];
+    while(i < q) w[k++] = v[i++];
+    while(j < r) w[k++] = v[j++];
 
-    free(L);
-    free(R);
+    for(i=p; i<r; i++) v[i] = w[i-p];
+    free (w);
 }
 
-void mergeSort(int vet[], int i, int j){
-    if(i<j){
-        int m = i+(j-i)/2;
-        mergeSort(vet, i, m);
-        mergeSort(vet, m+1, j);
-        merge(vet, i, m, j);
+void mergeSort (int p, int r, int v[]){
+    if(p < r-1) {
+    int q = (p+r)/2;
+    mergeSort(p, q, v);
+    mergeSort(q, r, v);
+    Intercala(p, q, r, v);
     }
 }
 
-void gerarRand(int vet[], int n){
+
+void gerarRand(int v[], int n){
     for(int i=0; i<n; i++){
-        vet[i] = rand()%100000;
+        v[i] = rand()%100000;
     }
 }
 
@@ -47,18 +39,18 @@ int main(){
     int n;
 
     for(n=0; n<=400000; n=n+20000){
-        int *vet = malloc(n * sizeof(int));
+        int *v = malloc(n * sizeof(int));
 
-        gerarRand(vet, n);
+        gerarRand(v, n);
 
         clock_t start = clock();
-        mergeSort(vet, 0, n-1);
+        mergeSort(0, n, v);
         clock_t end = clock();
 
         double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
         printf("n=%d : %.3f segundos\n", n, elapsed_time);
 
-        free(vet);
+        free(v);
     }
     return 0;
 }
