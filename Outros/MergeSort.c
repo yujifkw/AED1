@@ -16,28 +16,13 @@ void merge(int vet[], int l, int m, int r){
 
     int i=0, j=0, k=l;
     while(i<n1 && j<n2){
-        if(L[i] <= R[j]){
-            vet[k] = L[i];
-            i++;
-        }
-        else{
-            vet[k] = R[j];
-            j++;
-        }
+        if(L[i] <= R[j]) vet[k] = L[i++];
+        else vet[k] = R[j++];
         k++;
     }
 
-    while(i<n1){
-        vet[k] = L[i];
-        i++;
-        k++;
-    }
-
-    while(j<n2){
-        vet[k] = R[j];
-        j++;
-        k++;
-    }
+    while(i<n1) vet[k++] = L[i++];
+    while(j<n2) vet[k++] = R[j++];
 
     free(L);
     free(R);
