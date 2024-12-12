@@ -2,37 +2,32 @@
 #include <stdlib.h>
 #include <time.h>
 
-void troca(int *a, int *b){
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-int part(int arr[], int low, int high){
-    int pivo = arr[high];
-    int i = (low-1);
-
-    for(int j=low; j<high; j++){
-        if (arr[j] <= pivo){
-            i++;
-            troca(&arr[i], &arr[j]);
+int Separa(int p, int r, int v[]){
+    int c, k, t;
+    c = v[r];
+    for(k=p; k<r; k++){
+        if(v[k] <= c){
+            t = v[p], v[p] = v[k], v[k] = t;
+            p++;
         }
     }
-    troca(&arr[i+1], &arr[high]);
-    return (i+1);
+    v[r] = v[p];
+    v[p] = c;
+    return p;
 }
 
-void quickSort(int arr[], int low, int high){
-    if(low < high) {
-        int pivo = part(arr, low, high);
-        quickSort(arr, low, pivo-1);
-        quickSort(arr, pivo+1, high);
-    }
+void quickSort(int p, int r, int v[]){
+    int j;
+    if(p < r){
+        j = Separa(p, r, v);
+        quickSort(p, j-1, v);
+        quickSort(j+1, r, v);
+        }
 }
 
-void gerarRand(int arr[], int n){
+void gervand(int v[], int n){
     for(int i=0; i<n; i++) {
-        arr[i] = rand()%100000;
+        v[i] = rand()%100000;
     }
 }
 
@@ -40,18 +35,18 @@ int main(){
     int n;
 
     for(n=0; n<=400000; n=n+20000){
-        int *arr = malloc(n * sizeof(int));
+        int *v = malloc(n * sizeof(int));
 
-        gerarRand(arr, n);
+        gervand(v, n);
 
         clock_t start = clock();
-        quickSort(arr, 0, n-1);
+        quickSort(0, n-1, v);
         clock_t end = clock();
 
         double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
         printf("n=%d : %.3f segundos\n", n, elapsed_time);
 
-        free(arr);
+        free(v);
     }
     return 0;
 }
