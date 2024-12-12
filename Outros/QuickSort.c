@@ -25,7 +25,7 @@ void quickSort(int p, int r, int v[]){
         }
 }
 
-void gervand(int v[], int n){
+void gerarRand(int v[], int n){
     for(int i=0; i<n; i++) {
         v[i] = rand()%100000;
     }
@@ -37,7 +37,7 @@ int main(){
     for(n=0; n<=400000; n=n+20000){
         int *v = malloc(n * sizeof(int));
 
-        gervand(v, n);
+        gerarRand(v, n);
 
         clock_t start = clock();
         quickSort(0, n-1, v);
