@@ -1,6 +1,6 @@
 /*
  * nome: 1855 C99.c
- * descrição: mapaa do Meistre
+ * descriÃ§Ã£o: Mapa do Meistre
  * data: 18/01
 */
 
@@ -15,7 +15,7 @@ int main(){
     for(int i = 0; i < altura; i++) scanf("%s", mapa[i]);
 
     int x=0, y=0;
-    int dx = 0, dy = 1; // Direção inicial (para a direita)
+    int dx = 0, dy = 1; // DireÃ§Ã£o inicial (para a direita)
 
     while(1){
         // Verifica se saiu do mapa
@@ -24,16 +24,16 @@ int main(){
             return 0;
         }
 
-        // Verifica se já visitou
+        // Verifica se jÃ¡ visitou
         if(controle[x][y]){
             printf("!\n");
             return 0;
         }
 
-        // Marca a posição como visitada
+        // Marca a posiÃ§Ã£o como visitada
         controle[x][y] = 1;
 
-        // Verifica conteúdo
+        // Verifica conteÃºdo
         if(mapa[x][y] == '*'){
             printf("*\n");
             return 0;
